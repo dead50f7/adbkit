@@ -148,10 +148,11 @@ class Parser {
 		const resolver = Bluebird.defer<void>();
 		const tryRead = () => {
 			if (howMany) {
-				const chunk = this.stream.read(howMany);
 				// Try to get the exact amount we need first. If unsuccessful, take
 				// whatever is available, which will be less than the needed amount.
-				while (chunk || this.stream.read()) {
+				// avoid chunk is undefined.
+				let chunk;
+				while ((chunk = this.stream.read(howMany)) || this.stream.read()) {
 					howMany -= chunk.length;
 					targetStream.write(chunk);
 					if (howMany === 0) {
