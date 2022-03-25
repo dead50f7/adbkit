@@ -2,7 +2,7 @@ import Connection from './connection';
 import Protocol from './protocol';
 import Parser from './parser';
 import d from 'debug';
-import Bluebird from 'bluebird';
+import * as Bluebird from 'bluebird';
 import { WithToString } from '../WithToString';
 const debug = d('adb:command');
 const RE_SQUOT = /'/g;

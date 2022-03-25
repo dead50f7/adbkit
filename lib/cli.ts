@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import program from 'commander';
+import { Command } from 'commander';
 import forge from 'node-forge';
 import * as pkg from '../package.json';
 import Adb from './adb';
@@ -7,11 +7,13 @@ import Auth from './adb/auth';
 import PacketReader from './adb/tcpusb/packetreader';
 import Bluebird from 'bluebird';
 
+const program = new Command();
+
 program.version(pkg.version);
 
 program
 	.command('pubkey-convert <file>')
-	.option('-f, --format <format>', 'format (pem or openssh)', String, 'pem')
+	.option('-f, --format <format>', 'format (pem or openssh)', 'pem')
 	.description('Converts an ADB-generated public key into PEM format.')
 	.action(function (file, options) {
 		return Auth.parsePublicKey(fs.readFileSync(file).toString('utf8')).then(function (key) {
@@ -38,7 +40,7 @@ program
 
 program
 	.command('usb-device-to-tcp <serial>')
-	.option('-p, --port <port>', 'port number', String, 6174)
+	.option('-p, --port <port>', 'port number', '6174')
 	.description('Provides an USB device over TCP using a translating proxy.')
 	.action(function (serial, options) {
 		const adb = Adb.createClient();
@@ -54,7 +56,7 @@ program
 			.on('error', function (err) {
 				return console.error('An error occured: ' + err.message);
 			});
-		return server.listen(options.port);
+		server.listen(options.port);
 	});
 
 program
@@ -62,7 +64,7 @@ program
 	.description('Parses ADB TCP packets from the given file.')
 	.action(function (file) {
 		const reader = new PacketReader(fs.createReadStream(file));
-		return reader.on('packet', function (packet) {
+		reader.on('packet', function (packet) {
 			return console.log(packet.toString());
 		});
 	});
