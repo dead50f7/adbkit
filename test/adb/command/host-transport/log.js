@@ -28,7 +28,7 @@ describe('LogCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute('main').then(function(stream) {
+    cmd.execute('main').then(function(stream) {
       return done();
     });
   });
@@ -39,7 +39,7 @@ describe('LogCommand', function() {
     setImmediate(function() {
       return conn.socket.causeRead(Protocol.OKAY);
     });
-    return cmd.execute('main').then(function(stream) {
+    cmd.execute('main').then(function(stream) {
       stream.end();
       expect(stream).to.be.an.instanceof(Stream.Readable);
       return done();

@@ -32,7 +32,7 @@ describe('LogcatCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(stream) {
+    cmd.execute().then(function(stream) {
       return done();
     });
   });
@@ -47,7 +47,7 @@ describe('LogcatCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute({
+    cmd.execute({
       clear: true
     }).then(function(stream) {
       return done();
@@ -60,7 +60,7 @@ describe('LogcatCommand', function() {
     setImmediate(function() {
       return conn.socket.causeRead(Protocol.OKAY);
     });
-    return cmd.execute().then(function(stream) {
+    cmd.execute().then(function(stream) {
       stream.end();
       expect(stream).to.be.an.instanceof(Stream.Readable);
       return done();
@@ -75,7 +75,7 @@ describe('LogcatCommand', function() {
       conn.socket.causeRead('\r\nfoo\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(stream) {
+    cmd.execute().then(function(stream) {
       return new Parser(stream).readAll();
     }).then(function(out) {
       expect(out.toString()).to.equal('foo\n');
@@ -91,7 +91,7 @@ describe('LogcatCommand', function() {
       conn.socket.causeRead('\nfoo\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(stream) {
+    cmd.execute().then(function(stream) {
       return new Parser(stream).readAll();
     }).then(function(out) {
       expect(out.toString()).to.equal('foo\r\n');

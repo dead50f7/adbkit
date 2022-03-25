@@ -28,7 +28,7 @@ describe('GetFeaturesCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function() {
+    cmd.execute().then(function() {
       return done();
     });
   });
@@ -40,7 +40,7 @@ describe('GetFeaturesCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(features) {
+    cmd.execute().then(function(features) {
       expect(Object.keys(features)).to.be.empty;
       return done();
     });
@@ -56,7 +56,7 @@ feature:foo\r
 feature:bar`);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(features) {
+    cmd.execute().then(function(features) {
       expect(Object.keys(features)).to.have.length(3);
       expect(features).to.eql({
         reqGlEsVersion: '0x20000',

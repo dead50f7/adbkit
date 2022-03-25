@@ -29,7 +29,7 @@ describe('IsInstalledCommand', function() {
       conn.socket.causeRead('package:foo\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').then(function() {
+    cmd.execute('foo').then(function() {
       return done();
     });
   });
@@ -42,7 +42,7 @@ describe('IsInstalledCommand', function() {
       conn.socket.causeRead('package:bar\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').then(function(found) {
+    cmd.execute('foo').then(function(found) {
       expect(found).to.be.true;
       return done();
     });
@@ -55,7 +55,7 @@ describe('IsInstalledCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').then(function(found) {
+    cmd.execute('foo').then(function(found) {
       expect(found).to.be.false;
       return done();
     });
@@ -69,7 +69,7 @@ describe('IsInstalledCommand', function() {
       conn.socket.causeRead('open: Permission failed\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').catch(function(err) {
+    cmd.execute('foo').catch(function(err) {
       expect(err).to.be.an.instanceof(Error);
       return done();
     });

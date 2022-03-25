@@ -16,16 +16,14 @@ Parser = require('../../lib/adb/parser');
 
 describe('Parser', function() {
   describe('end()', function() {
-    return it("should end the stream and consume all remaining data", function(done) {
+    return it("should end the stream and consume all remaining data", function() {
       var parser, stream;
       stream = new Stream.PassThrough();
       parser = new Parser(stream);
       stream.write('F');
       stream.write('O');
       stream.write('O');
-      return parser.end().then(function() {
-        return done();
-      });
+      return parser.end();
     });
   });
   describe('readAll()', function() {
@@ -38,8 +36,8 @@ describe('Parser', function() {
       expect(promise.isCancellable()).to.be.true;
       promise.catch(Promise.CancellationError, function(err) {
         return done();
-      });
-      return promise.cancel();
+      }).catch(done)
+      promise.cancel();
     });
     it("should read all remaining content until the stream ends", function(done) {
       var parser, stream;
@@ -76,8 +74,8 @@ describe('Parser', function() {
       expect(promise.isCancellable()).to.be.true;
       promise.catch(Promise.CancellationError, function(err) {
         return done();
-      });
-      return promise.cancel();
+      }).catch(done);
+      promise.cancel();
     });
     it("should read as many bytes as requested", function(done) {
       var parser, stream;
@@ -102,22 +100,22 @@ describe('Parser', function() {
         expect(buf.toString()).to.equal('BYTES');
         return done();
       });
-      return Promise.delay(50).then(function() {
+      Promise.delay(50).then(function() {
         return stream.write('BYTES');
-      });
+      }).catch(done);
     });
     it("should keep data waiting even when nothing has been requested", function(done) {
       var parser, stream;
       stream = new Stream.PassThrough();
       parser = new Parser(stream);
       stream.write('FOO');
-      return Promise.delay(50).then(function() {
+      Promise.delay(50).then(function() {
         return parser.readBytes(2).then(function(buf) {
           expect(buf.length).to.equal(2);
           expect(buf.toString()).to.equal('FO');
           return done();
         });
-      });
+      }).catch(done);
     });
     return it("should reject with Parser.PrematureEOFError if stream ends before enough bytes can be read", function(done) {
       var parser, stream;
@@ -142,8 +140,8 @@ describe('Parser', function() {
       expect(promise.isCancellable()).to.be.true;
       promise.catch(Promise.CancellationError, function(err) {
         return done();
-      });
-      return promise.cancel();
+      }).catch(done);
+      promise.cancel();
     });
     it("should read as many bytes as requested", function(done) {
       var parser, stream, target;
@@ -188,8 +186,8 @@ describe('Parser', function() {
       expect(promise.isCancellable()).to.be.true;
       promise.catch(Promise.CancellationError, function(err) {
         return done();
-      });
-      return promise.cancel();
+      }).catch(done);
+      promise.cancel();
     });
     it("should read as many ascii characters as requested", function(done) {
       var parser, stream;
@@ -224,8 +222,8 @@ describe('Parser', function() {
       expect(promise.isCancellable()).to.be.true;
       promise.catch(Promise.CancellationError, function(err) {
         return done();
-      });
-      return promise.cancel();
+      }).catch(done);
+      promise.cancel();
     });
     it("should read a protocol value as a Buffer", function(done) {
       var parser, stream;
@@ -271,8 +269,8 @@ describe('Parser', function() {
       expect(promise.isCancellable()).to.be.true;
       promise.catch(Promise.CancellationError, function(err) {
         return done();
-      });
-      return promise.cancel();
+      }).catch(done);
+      promise.cancel();
     });
     it("should reject with Parser.FailError using the value", function(done) {
       var parser, stream;
@@ -305,8 +303,8 @@ describe('Parser', function() {
       expect(promise.isCancellable()).to.be.true;
       promise.catch(Promise.CancellationError, function(err) {
         return done();
-      });
-      return promise.cancel();
+      }).catch(done);
+      promise.cancel();
     });
     it("should return the re.exec match of the matching line", function(done) {
       var parser, stream;
@@ -341,8 +339,8 @@ describe('Parser', function() {
       expect(promise.isCancellable()).to.be.true;
       promise.catch(Promise.CancellationError, function(err) {
         return done();
-      });
-      return promise.cancel();
+      }).catch(done);
+      promise.cancel();
     });
     it("should skip a line terminated by \\n", function(done) {
       var parser, stream;
@@ -397,8 +395,8 @@ describe('Parser', function() {
       expect(promise.isCancellable()).to.be.true;
       promise.catch(Promise.CancellationError, function(err) {
         return done();
-      });
-      return promise.cancel();
+      }).catch(done);
+      promise.cancel();
     });
     it("should return any characters before given value", function(done) {
       var parser, stream;
@@ -439,12 +437,12 @@ describe('Parser', function() {
       var parser, stream;
       stream = new Stream.PassThrough();
       parser = new Parser(stream);
-      return parser.unexpected('foo', "'bar' or end of stream").catch(Parser.UnexpectedDataError, function(err) {
+      parser.unexpected('foo', "'bar' or end of stream").catch(Parser.UnexpectedDataError, function(err) {
         expect(err.message).to.equal("Unexpected 'foo', was expecting 'bar' or end of stream");
         expect(err.unexpected).to.equal('foo');
         expect(err.expected).to.equal("'bar' or end of stream");
         return done();
-      });
+      }).catch(done);
     });
   });
 });

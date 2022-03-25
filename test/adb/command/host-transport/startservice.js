@@ -29,7 +29,7 @@ describe('StartServiceCommand', function() {
     options = {
       component: 'com.dummy.component/.Main'
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -45,7 +45,7 @@ describe('StartServiceCommand', function() {
     options = {
       component: 'com.dummy.component/.Main'
     };
-    return cmd.execute(options).catch(function(err) {
+    cmd.execute(options).catch(function(err) {
       expect(err).to.be.be.an.instanceOf(Error);
       return done();
     });
@@ -66,7 +66,7 @@ describe('StartServiceCommand', function() {
       component: 'com.dummy.component/.Main',
       user: 0
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -85,7 +85,7 @@ describe('StartServiceCommand', function() {
     options = {
       component: 'com.dummy.component/.Main'
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });

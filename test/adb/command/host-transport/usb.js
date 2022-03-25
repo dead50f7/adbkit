@@ -29,7 +29,7 @@ describe('UsbCommand', function() {
       conn.socket.causeRead("restarting in USB mode\n");
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(val) {
+    cmd.execute().then(function(val) {
       expect(val).to.be.true;
       return done();
     });
@@ -43,7 +43,7 @@ describe('UsbCommand', function() {
       conn.socket.causeRead("invalid port\n");
       return conn.socket.causeEnd();
     });
-    return cmd.execute().catch(function(err) {
+    cmd.execute().catch(function(err) {
       expect(err.message).to.eql('invalid port');
       return done();
     });

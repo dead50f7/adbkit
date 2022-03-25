@@ -28,7 +28,7 @@ describe('LocalCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute('/foo.sock').then(function(stream) {
+    cmd.execute('/foo.sock').then(function(stream) {
       return done();
     });
   });
@@ -43,7 +43,7 @@ describe('LocalCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute('localabstract:/foo.sock').then(function(stream) {
+    cmd.execute('localabstract:/foo.sock').then(function(stream) {
       return done();
     });
   });
@@ -54,7 +54,7 @@ describe('LocalCommand', function() {
     setImmediate(function() {
       return conn.socket.causeRead(Protocol.OKAY);
     });
-    return cmd.execute('/foo.sock').then(function(stream) {
+    cmd.execute('/foo.sock').then(function(stream) {
       stream.end();
       expect(stream).to.be.an.instanceof(Stream.Readable);
       return done();

@@ -29,7 +29,7 @@ describe('WaitForDeviceCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute('abba').then(function() {
+    cmd.execute('abba').then(function() {
       return done();
     });
   });
@@ -42,7 +42,7 @@ describe('WaitForDeviceCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute('abba').then(function(id) {
+    cmd.execute('abba').then(function(id) {
       expect(id).to.equal('abba');
       return done();
     });
@@ -57,7 +57,7 @@ describe('WaitForDeviceCommand', function() {
       conn.socket.causeRead(Protocol.encodeData('not sure how this might happen'));
       return conn.socket.causeEnd();
     });
-    return cmd.execute('abba').catch(function(err) {
+    cmd.execute('abba').catch(function(err) {
       expect(err.message).to.contain('not sure how this might happen');
       return done();
     });

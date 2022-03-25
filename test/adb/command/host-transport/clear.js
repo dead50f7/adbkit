@@ -27,7 +27,7 @@ describe('ClearCommand', function() {
       conn.socket.causeRead('Success\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo.bar.c').then(function() {
+    cmd.execute('foo.bar.c').then(function() {
       return done();
     });
   });
@@ -40,7 +40,7 @@ describe('ClearCommand', function() {
       conn.socket.causeRead('Success\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo.bar.c').then(function() {
+    cmd.execute('foo.bar.c').then(function() {
       return done();
     });
   });
@@ -53,7 +53,7 @@ describe('ClearCommand', function() {
       conn.socket.causeRead('Failed\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo.bar.c').catch(function(err) {
+    cmd.execute('foo.bar.c').catch(function(err) {
       expect(err).to.be.an.instanceof(Error);
       return done();
     });
@@ -66,7 +66,7 @@ describe('ClearCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeRead('Failed\r\n');
     });
-    return cmd.execute('foo.bar.c').catch(function(err) {
+    cmd.execute('foo.bar.c').catch(function(err) {
       expect(err).to.be.an.instanceof(Error);
       return done();
     });
@@ -81,7 +81,7 @@ describe('ClearCommand', function() {
       conn.socket.causeRead('Success\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo.bar.c').then(function() {
+    cmd.execute('foo.bar.c').then(function() {
       return done();
     });
   });

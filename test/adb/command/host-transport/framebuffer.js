@@ -30,7 +30,7 @@ describe('FrameBufferCommand', function() {
       conn.socket.causeRead(meta);
       return conn.socket.causeEnd();
     });
-    return cmd.execute('raw').then(function() {
+    cmd.execute('raw').then(function() {
       return done();
     });
   });
@@ -62,7 +62,7 @@ describe('FrameBufferCommand', function() {
       conn.socket.causeRead(meta);
       return conn.socket.causeEnd();
     });
-    return cmd.execute('raw').then(function(stream) {
+    cmd.execute('raw').then(function(stream) {
       expect(stream).to.have.property('meta');
       expect(stream.meta).to.eql({
         version: 1,

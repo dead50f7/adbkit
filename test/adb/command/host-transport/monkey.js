@@ -30,7 +30,7 @@ describe('MonkeyCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeRead(':Monkey: foo\n');
     });
-    return cmd.execute(1080).then(function(stream) {
+    cmd.execute(1080).then(function(stream) {
       return done();
     });
   });
@@ -42,7 +42,7 @@ describe('MonkeyCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeRead(':Monkey: foo\n');
     });
-    return cmd.execute(1080).then(function(stream) {
+    cmd.execute(1080).then(function(stream) {
       stream.end();
       expect(stream).to.be.an.instanceof(Stream.Readable);
       return done();
@@ -55,7 +55,7 @@ describe('MonkeyCommand', function() {
     setImmediate(function() {
       return conn.socket.causeRead(Protocol.OKAY);
     });
-    return cmd.execute(1080).then(function(stream) {
+    cmd.execute(1080).then(function(stream) {
       stream.end();
       expect(stream).to.be.an.instanceof(Stream.Readable);
       return done();

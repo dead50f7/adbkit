@@ -54,16 +54,18 @@ describe('Sync', function() {
         });
       });
     });
-    return Promise.all(promises).then(function() {
+    Promise.all(promises).then(function() {
       return done();
     }).catch(done);
   };
   before(function(done) {
     client = Adb.createClient();
-    return client.listDevices().then(function(devices) {
+    client.listDevices().then(function(devices) {
       deviceList = devices;
       return done();
-    });
+    }).catch(function(e) {
+      done(e);
+    })
   });
   describe('end()', function() {
     return it("should end the sync connection", function() {

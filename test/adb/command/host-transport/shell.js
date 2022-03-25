@@ -30,7 +30,7 @@ describe('ShellCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo \'bar').then(function(out) {
+    cmd.execute('foo \'bar').then(function(out) {
       return done();
     });
   });
@@ -45,7 +45,7 @@ describe('ShellCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute(['foo', '\'bar\'', '"']).then(function(out) {
+    cmd.execute(['foo', '\'bar\'', '"']).then(function(out) {
       return done();
     });
   });
@@ -60,7 +60,7 @@ describe('ShellCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute(['foo', 67]).then(function(out) {
+    cmd.execute(['foo', 67]).then(function(out) {
       return done();
     });
   });
@@ -76,7 +76,7 @@ describe('ShellCommand', function() {
       conn.socket.causeRead(Protocol.encodeData('mystery'));
       return conn.socket.causeEnd();
     });
-    return cmd.execute(['foo']).catch(Parser.FailError, function(err) {
+    cmd.execute(['foo']).catch(Parser.FailError, function(err) {
       return done();
     });
   });

@@ -29,7 +29,7 @@ describe('ConnectCommand', function() {
       conn.socket.causeRead(Protocol.encodeData('connected to 192.168.2.2:5555'));
       return conn.socket.causeEnd();
     });
-    return cmd.execute('192.168.2.2', 5555).then(function() {
+    cmd.execute('192.168.2.2', 5555).then(function() {
       return done();
     });
   });
@@ -42,7 +42,7 @@ describe('ConnectCommand', function() {
       conn.socket.causeRead(Protocol.encodeData('connected to 192.168.2.2:5555'));
       return conn.socket.causeEnd();
     });
-    return cmd.execute('192.168.2.2', 5555).then(function(val) {
+    cmd.execute('192.168.2.2', 5555).then(function(val) {
       expect(val).to.be.equal('192.168.2.2:5555');
       return done();
     });
@@ -56,7 +56,7 @@ describe('ConnectCommand', function() {
       conn.socket.causeRead(Protocol.encodeData('already connected to 192.168.2.2:5555'));
       return conn.socket.causeEnd();
     });
-    return cmd.execute('192.168.2.2', 5555).then(function(val) {
+    cmd.execute('192.168.2.2', 5555).then(function(val) {
       expect(val).to.be.equal('192.168.2.2:5555');
       return done();
     });
@@ -70,7 +70,7 @@ describe('ConnectCommand', function() {
       conn.socket.causeRead(Protocol.encodeData('unable to connect to 192.168.2.2:5555'));
       return conn.socket.causeEnd();
     });
-    return cmd.execute('192.168.2.2', 5555).catch(function(err) {
+    cmd.execute('192.168.2.2', 5555).catch(function(err) {
       expect(err.message).to.eql('unable to connect to 192.168.2.2:5555');
       return done();
     });

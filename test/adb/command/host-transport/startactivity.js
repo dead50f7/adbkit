@@ -29,7 +29,7 @@ describe('StartActivityCommand', function() {
     options = {
       component: 'com.dummy.component/.Main'
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -45,7 +45,7 @@ describe('StartActivityCommand', function() {
     options = {
       component: 'com.dummy.component/.Main'
     };
-    return cmd.execute(options).catch(function(err) {
+    cmd.execute(options).catch(function(err) {
       expect(err).to.be.be.an.instanceOf(Error);
       return done();
     });
@@ -65,7 +65,7 @@ describe('StartActivityCommand', function() {
     options = {
       component: 'com.dummy.component/.Main'
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -87,7 +87,7 @@ describe('StartActivityCommand', function() {
       wait: true,
       debug: true
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -106,7 +106,7 @@ describe('StartActivityCommand', function() {
     options = {
       action: "foo.ACTION_BAR"
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -125,7 +125,7 @@ describe('StartActivityCommand', function() {
     options = {
       data: "foo://bar"
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -144,7 +144,7 @@ describe('StartActivityCommand', function() {
     options = {
       mimeType: "text/plain"
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -163,7 +163,7 @@ describe('StartActivityCommand', function() {
     options = {
       category: "android.intent.category.LAUNCHER"
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -182,7 +182,7 @@ describe('StartActivityCommand', function() {
     options = {
       category: ["android.intent.category.LAUNCHER", "android.intent.category.DEFAULT"]
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -201,7 +201,7 @@ describe('StartActivityCommand', function() {
     options = {
       flags: 0x10210000
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -230,7 +230,7 @@ describe('StartActivityCommand', function() {
         }
       ]
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -261,7 +261,7 @@ describe('StartActivityCommand', function() {
         }
       ]
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -292,7 +292,7 @@ describe('StartActivityCommand', function() {
         }
       ]
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -323,7 +323,7 @@ describe('StartActivityCommand', function() {
         }
       ]
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -354,7 +354,7 @@ describe('StartActivityCommand', function() {
         }
       ]
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -385,7 +385,7 @@ describe('StartActivityCommand', function() {
         }
       ]
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -423,7 +423,7 @@ describe('StartActivityCommand', function() {
         }
       ]
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -452,7 +452,7 @@ describe('StartActivityCommand', function() {
         }
       ]
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });
@@ -471,7 +471,7 @@ describe('StartActivityCommand', function() {
       ]
     };
     expect(function() {
-      return cmd.execute(options, function() {});
+      cmd.execute(options, function() {});
     }).to.throw;
     return done();
   });
@@ -525,7 +525,7 @@ describe('StartActivityCommand', function() {
         }
       ]
     };
-    return cmd.execute(options).then(function() {
+    cmd.execute(options).then(function() {
       return done();
     });
   });

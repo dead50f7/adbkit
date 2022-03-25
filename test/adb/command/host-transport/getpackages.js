@@ -28,7 +28,7 @@ describe('GetPackagesCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function() {
+    cmd.execute().then(function() {
       return done();
     });
   });
@@ -43,7 +43,7 @@ describe('GetPackagesCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute('-3').then(function() {
+    cmd.execute('-3').then(function() {
       return done();
     });
   });
@@ -55,7 +55,7 @@ describe('GetPackagesCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(packages) {
+    cmd.execute().then(function(packages) {
       expect(packages).to.be.empty;
       return done();
     });
@@ -75,7 +75,7 @@ package:com.google.android.apps.magazines
 package:com.google.earth`);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(packages) {
+    cmd.execute().then(function(packages) {
       expect(packages).to.have.length(7);
       expect(packages).to.eql(['com.google.android.gm', 'com.google.android.inputmethod.japanese', 'com.google.android.tag', 'com.google.android.GoogleCamera', 'com.google.android.youtube', 'com.google.android.apps.magazines', 'com.google.earth']);
       return done();

@@ -27,7 +27,7 @@ describe('HostVersionCommand', function() {
       conn.socket.causeRead(Protocol.encodeData('0000'));
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(version) {
+    cmd.execute().then(function(version) {
       return done();
     });
   });
@@ -40,7 +40,7 @@ describe('HostVersionCommand', function() {
       conn.socket.causeRead(Protocol.encodeData(0x1234.toString(16)));
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(version) {
+    cmd.execute().then(function(version) {
       expect(version).to.equal(0x1234);
       return done();
     });
@@ -53,7 +53,7 @@ describe('HostVersionCommand', function() {
       conn.socket.causeRead(0x1234.toString(16));
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(version) {
+    cmd.execute().then(function(version) {
       expect(version).to.equal(0x1234);
       return done();
     });

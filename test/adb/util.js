@@ -24,8 +24,8 @@ describe('util', function() {
       expect(promise.isCancellable()).to.be.true;
       promise.catch(Promise.CancellationError, function(err) {
         return done();
-      });
-      return promise.cancel();
+      }).catch(done);
+      promise.cancel();
     });
     return it("should read all remaining content until the stream ends", function(done) {
       var stream;

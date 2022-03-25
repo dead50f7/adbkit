@@ -29,7 +29,7 @@ describe('RootCommand', function() {
       conn.socket.causeRead("restarting adbd as root\n");
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(val) {
+    cmd.execute().then(function(val) {
       expect(val).to.be.true;
       return done();
     });
@@ -43,7 +43,7 @@ describe('RootCommand', function() {
       conn.socket.causeRead("adbd cannot run as root in production builds\n");
       return conn.socket.causeEnd();
     });
-    return cmd.execute().catch(function(err) {
+    cmd.execute().catch(function(err) {
       expect(err.message).to.eql('adbd cannot run as root in production builds');
       return done();
     });

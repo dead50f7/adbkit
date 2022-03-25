@@ -28,7 +28,7 @@ describe('TcpCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute(8080).then(function(stream) {
+    cmd.execute(8080).then(function(stream) {
       return done();
     });
   });
@@ -43,7 +43,7 @@ describe('TcpCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute(8080, '127.0.0.1').then(function(stream) {
+    cmd.execute(8080, '127.0.0.1').then(function(stream) {
       return done();
     });
   });
@@ -54,7 +54,7 @@ describe('TcpCommand', function() {
     setImmediate(function() {
       return conn.socket.causeRead(Protocol.OKAY);
     });
-    return cmd.execute(8080).then(function(stream) {
+    cmd.execute(8080).then(function(stream) {
       stream.end();
       expect(stream).to.be.an.instanceof(Stream.Readable);
       return done();

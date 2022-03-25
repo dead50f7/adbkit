@@ -28,7 +28,7 @@ describe('GetPropertiesCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function() {
+    cmd.execute().then(function() {
       return done();
     });
   });
@@ -40,7 +40,7 @@ describe('GetPropertiesCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(properties) {
+    cmd.execute().then(function(properties) {
       expect(Object.keys(properties)).to.be.empty;
       return done();
     });
@@ -57,7 +57,7 @@ describe('GetPropertiesCommand', function() {
 [ro.product.name]: [SC-04E]`);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(properties) {
+    cmd.execute().then(function(properties) {
       expect(Object.keys(properties)).to.have.length(4);
       expect(properties).to.eql({
         'ro.product.locale.region': 'US',

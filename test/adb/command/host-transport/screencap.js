@@ -29,7 +29,7 @@ describe('ScreencapCommand', function() {
       conn.socket.causeRead('\r\nlegit image');
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(stream) {
+    cmd.execute().then(function(stream) {
       return done();
     });
   });
@@ -42,7 +42,7 @@ describe('ScreencapCommand', function() {
       conn.socket.causeRead('\r\nlegit image');
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(stream) {
+    cmd.execute().then(function(stream) {
       return new Parser(stream).readAll();
     }).then(function(out) {
       expect(out.toString()).to.equal('legit image');
@@ -57,7 +57,7 @@ describe('ScreencapCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().catch(function(err) {
+    cmd.execute().catch(function(err) {
       return done();
     });
   });
@@ -70,7 +70,7 @@ describe('ScreencapCommand', function() {
       conn.socket.causeRead('\r\nfoo\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(stream) {
+    cmd.execute().then(function(stream) {
       return new Parser(stream).readAll();
     }).then(function(out) {
       expect(out.toString()).to.equal('foo\n');
@@ -86,7 +86,7 @@ describe('ScreencapCommand', function() {
       conn.socket.causeRead('\nfoo\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function(stream) {
+    cmd.execute().then(function(stream) {
       return new Parser(stream).readAll();
     }).then(function(out) {
       expect(out.toString()).to.equal('foo\r\n');

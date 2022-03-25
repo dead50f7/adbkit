@@ -29,7 +29,7 @@ describe('InstallCommand', function() {
       conn.socket.causeRead('Success\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').then(function() {
+    cmd.execute('foo').then(function() {
       return done();
     });
   });
@@ -42,7 +42,7 @@ describe('InstallCommand', function() {
       conn.socket.causeRead('Success\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').then(function() {
+    cmd.execute('foo').then(function() {
       return done();
     });
   });
@@ -55,7 +55,7 @@ describe('InstallCommand', function() {
       conn.socket.causeRead('Failure [BAR]\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').catch(function(err) {
+    cmd.execute('foo').catch(function(err) {
       return done();
     });
   });
@@ -68,7 +68,7 @@ describe('InstallCommand', function() {
       conn.socket.causeRead('Failure [ALREADY_EXISTS]\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').catch(function(err) {
+    cmd.execute('foo').catch(function(err) {
       expect(err.code).to.equal('ALREADY_EXISTS');
       return done();
     });
@@ -83,7 +83,7 @@ describe('InstallCommand', function() {
       conn.socket.causeRead('Success\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').then(function() {
+    cmd.execute('foo').then(function() {
       return done();
     });
   });

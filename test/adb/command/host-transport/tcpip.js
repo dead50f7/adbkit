@@ -29,7 +29,7 @@ describe('TcpIpCommand', function() {
       conn.socket.causeRead("restarting in TCP mode port: 5555\n");
       return conn.socket.causeEnd();
     });
-    return cmd.execute(5555).then(function() {
+    cmd.execute(5555).then(function() {
       return done();
     });
   });
@@ -42,7 +42,7 @@ describe('TcpIpCommand', function() {
       conn.socket.causeRead("restarting in TCP mode port: 5555\n");
       return conn.socket.causeEnd();
     });
-    return cmd.execute(5555).then(function(port) {
+    cmd.execute(5555).then(function(port) {
       expect(port).to.equal(5555);
       return done();
     });
@@ -56,7 +56,7 @@ describe('TcpIpCommand', function() {
       conn.socket.causeRead("not sure what this could be\n");
       return conn.socket.causeEnd();
     });
-    return cmd.execute(5555).catch(function(err) {
+    cmd.execute(5555).catch(function(err) {
       expect(err.message).to.eql('not sure what this could be');
       return done();
     });

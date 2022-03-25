@@ -32,7 +32,7 @@ describe('WaitBootCompleteCommand', function() {
       conn.socket.causeRead('1\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function() {
+    cmd.execute().then(function() {
       return done();
     });
   });
@@ -44,7 +44,7 @@ describe('WaitBootCompleteCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function() {
+    cmd.execute().then(function() {
       return done(new Error('Succeeded even though it should not'));
     }).catch(Parser.PrematureEOFError, function(err) {
       return done();
@@ -72,7 +72,7 @@ describe('WaitBootCompleteCommand', function() {
         return conn.socket.causeRead('1\r\n');
       }, 50);
     });
-    return cmd.execute().then(function() {
+    cmd.execute().then(function() {
       expect(sent).to.be.true;
       return done();
     });
@@ -88,6 +88,6 @@ describe('WaitBootCompleteCommand', function() {
     conn.socket.on('end', function() {
       return done();
     });
-    return cmd.execute();
+    cmd.execute();
   });
 });

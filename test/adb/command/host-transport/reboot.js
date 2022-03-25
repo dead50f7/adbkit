@@ -26,7 +26,7 @@ describe('RebootCommand', function() {
       conn.socket.causeRead(Protocol.OKAY);
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function() {
+    cmd.execute().then(function() {
       return done();
     });
   });
@@ -45,7 +45,7 @@ describe('RebootCommand', function() {
       ended = true;
       return conn.socket.causeEnd();
     });
-    return cmd.execute().then(function() {
+    cmd.execute().then(function() {
       expect(ended).to.be.true;
       return done();
     });

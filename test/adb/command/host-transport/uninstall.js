@@ -31,7 +31,7 @@ describe('UninstallCommand', function() {
       conn.socket.causeRead('Success\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').then(function() {
+    cmd.execute('foo').then(function() {
       return done();
     });
   });
@@ -47,7 +47,7 @@ describe('UninstallCommand', function() {
       conn.socket.causeRead('Failure\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').then(function() {
+    cmd.execute('foo').then(function() {
       return done();
     });
   });
@@ -63,7 +63,7 @@ describe('UninstallCommand', function() {
       conn.socket.causeRead('Failure [DELETE_FAILED_INTERNAL_ERROR]\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').then(function() {
+    cmd.execute('foo').then(function() {
       return done();
     });
   });
@@ -76,7 +76,7 @@ describe('UninstallCommand', function() {
       conn.socket.causeRead('Failure - not installed for 0\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').then(function() {
+    cmd.execute('foo').then(function() {
       return done();
     });
   });
@@ -104,7 +104,7 @@ java.lang.IllegalArgumentException: Unknown package: foo
 	at android.os.Binder.execTransact(Binder.java:565)`);
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').then(function() {
+    cmd.execute('foo').then(function() {
       return done();
     });
   });
@@ -117,7 +117,7 @@ java.lang.IllegalArgumentException: Unknown package: foo
       conn.socket.causeRead('Hello. Is it me you are looking for?\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').catch(Parser.PrematureEOFError, function(err) {
+    cmd.execute('foo').catch(Parser.PrematureEOFError, function(err) {
       return done();
     });
   });
@@ -134,7 +134,7 @@ java.lang.IllegalArgumentException: Unknown package: foo
       conn.socket.causeRead('Failure\r\n');
       return conn.socket.causeEnd();
     });
-    return cmd.execute('foo').then(function() {
+    cmd.execute('foo').then(function() {
       return done();
     });
   });
