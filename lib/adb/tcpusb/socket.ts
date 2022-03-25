@@ -94,7 +94,7 @@ class Socket extends EventEmitter {
 		return this.end();
 	}
 
-	private _handle(packet: Packet): Bluebird<boolean> | undefined {
+	private _handle(packet: Packet): Bluebird<boolean | Socket | Service | undefined> | undefined {
 		if (this.ended) {
 			return;
 		}
@@ -225,7 +225,7 @@ class Socket extends EventEmitter {
 			});
 	}
 
-	private _forwardServicePacket(packet: Packet) {
+	private _forwardServicePacket(packet: Packet): Bluebird<boolean | Service> | undefined {
 		if (!this.authorized) {
 			throw new Socket.UnauthorizedError();
 		}
@@ -233,9 +233,8 @@ class Socket extends EventEmitter {
 		const service = this.services.get(localId);
 		if (service) {
 			return service.handle(packet);
-		} else {
-			return debug('Received a packet to a service that may have been closed already');
 		}
+		debug('Received a packet to a service that may have been closed already');
 	}
 
 	public write(chunk: Buffer): boolean {
