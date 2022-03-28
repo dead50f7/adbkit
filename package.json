@@ -35,7 +35,7 @@
     "test": "npm run lint && mocha --reporter spec --colors --recursive"
   },
   "dependencies": {
-    "@devicefarmer/adbkit-logcat": "^1.1.0",
+    "@devicefarmer/adbkit-logcat": "^2.1.1",
     "@devicefarmer/adbkit-monkey": "^1.2.0",
     "@types/bluebird": "^2.0.33",
     "@types/node-forge": "^0.9.5",
