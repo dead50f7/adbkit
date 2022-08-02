@@ -37,7 +37,7 @@ describe('Sync', function() {
   if (process.env.RUN_DEVICE_TESTS) {
     dt = it;
   }
-  SURELY_EXISTING_FILE = '/system/build.prop';
+  SURELY_EXISTING_FILE = '/etc/hosts';
   SURELY_EXISTING_PATH = '/';
   SURELY_NONEXISTING_PATH = '/non-existing-path';
   SURELY_WRITABLE_FILE = '/data/local/tmp/_sync.test';
