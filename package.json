@@ -1,6 +1,6 @@
 {
-  "name": "@devicefarmer/adbkit",
-  "version": "2.11.3",
+  "name": "@dead50f7/adbkit",
+  "version": "2.11.4",
   "description": "A pure Node.js client for the Android Debug Bridge.",
   "keywords": [
     "adb",
@@ -13,18 +13,13 @@
     "adbkit": "./bin/adbkit"
   },
   "bugs": {
-    "url": "https://github.com/DeviceFarmer/adbkit/issues"
+    "url": "https://github.com/dead50f7/adbkit/issues"
   },
   "license": "Apache-2.0",
-  "author": {
-    "name": "Device Farmer",
-    "email": "contact@openstf.io",
-    "url": "https://devicefarmer.github.io/"
-  },
   "main": "./index",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DeviceFarmer/adbkit.git"
+    "url": "https://github.com/dead50f7/adbkit.git"
   },
   "scripts": {
     "keycode": "node tasks/keycode.js",
